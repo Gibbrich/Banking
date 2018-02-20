@@ -8,6 +8,10 @@
 		<variable
 			name="viewModel"
 			type="com.github.gibbrich.banking.ViewModel"/>
+
+		<variable
+			name="spinnerAdapter"
+			type="android.widget.ArrayAdapter" />
 		
 		<import type="android.view.View"/>
 	</data>
@@ -21,7 +25,8 @@
 		<Spinner
 			android:id="@+id/idType"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content"
+			app:adapter="@{spinnerAdapter}"/>
 		
 		<EditText
 			android:id="@+id/cardNumber"
@@ -37,7 +42,8 @@
 			android:layout_height="wrap_content"
 			android:ems="10"
 			android:inputType="numberDecimal"
-			android:text="БИК" />
+			android:text="БИК"
+			android:visibility="@{viewModel.MFOFieldVisible? View.VISIBLE : View.GONE}"/>
 		
 		<EditText
 			android:id="@+id/accountNumber"
