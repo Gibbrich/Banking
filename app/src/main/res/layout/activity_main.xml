@@ -1,40 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools">
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context="com.github.gibbrich.banking.MainActivity">
 	
-	<data>
-		<variable
-			name="viewModel"
-			type="com.github.gibbrich.banking.ViewModel"/>
-		
-		<import type="android.view.View"/>
-		<import type="com.github.gibbrich.banking.model.AccountType"/>
-	</data>
+	<Spinner
+		android:id="@+id/accountType"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
 	
 	<LinearLayout
+		android:id="@+id/cardLayout"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="vertical"
-		tools:context="com.github.gibbrich.banking.MainActivity">
-		
-		<Spinner
-			android:id="@+id/idType"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			app:adapter="@{viewModel.accountType.widget.adapter}"
-			android:onItemSelected="@{viewModel.accountTypeHandler.onItemSelected}"
-			android:onNothingSelected="@{viewModel.accountTypeHandler.onNothingSelected}"/>
+		android:layout_height="wrap_content">
 		
 		<EditText
 			android:id="@+id/cardNumber"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:ems="10"
-			android:inputType=""
-			android:text="Номер карты"
-			android:visibility="@{viewModel.accountTypeHandler.selectedAccountType == AccountType.CARD ? View.VISIBLE : View.GONE}"/>
+			android:inputType="numberDecimal"
+			android:text="Номер карты" />
+	
+	</LinearLayout>
+	
+	<LinearLayout
+		android:id="@+id/accountLayout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
 		
 		<EditText
 			android:id="@+id/bankId"
@@ -42,8 +39,7 @@
 			android:layout_height="wrap_content"
 			android:ems="10"
 			android:inputType="numberDecimal"
-			android:text="БИК"
-			android:visibility="@{viewModel.accountTypeHandler.selectedAccountType == AccountType.ACCOUNT ? View.VISIBLE : View.GONE}"/>
+			android:text="БИК" />
 		
 		<EditText
 			android:id="@+id/accountNumber"
@@ -51,14 +47,12 @@
 			android:layout_height="wrap_content"
 			android:ems="10"
 			android:inputType="numberDecimal"
-			android:text="Номер счета"
-			android:visibility="@{viewModel.accountTypeHandler.selectedAccountType == AccountType.ACCOUNT ? View.VISIBLE : View.GONE}"/>
+			android:text="Номер счета" />
 		
 		<Spinner
 			android:id="@+id/paymentType"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:visibility="@{viewModel.accountTypeHandler.selectedAccountType == AccountType.ACCOUNT ? View.VISIBLE : View.GONE}"/>
+			android:layout_height="wrap_content" />
 		
 		<EditText
 			android:id="@+id/lastName"
@@ -66,8 +60,7 @@
 			android:layout_height="wrap_content"
 			android:ems="10"
 			android:inputType="textPersonName"
-			android:text="Фамилия"
-			android:visibility="@{viewModel.accountTypeHandler.selectedAccountType == AccountType.ACCOUNT ? View.VISIBLE : View.GONE}"/>
+			android:text="Фамилия" />
 		
 		<EditText
 			android:id="@+id/firstName"
@@ -75,8 +68,7 @@
 			android:layout_height="wrap_content"
 			android:ems="10"
 			android:inputType="textPersonName"
-			android:text="Имя"
-			android:visibility="@{viewModel.accountTypeHandler.selectedAccountType == AccountType.ACCOUNT ? View.VISIBLE : View.GONE}"/>
+			android:text="Имя" />
 		
 		<EditText
 			android:id="@+id/secondName"
@@ -84,12 +76,10 @@
 			android:layout_height="wrap_content"
 			android:ems="10"
 			android:inputType="textPersonName"
-			android:text="Отчество"
-			android:visibility="@{viewModel.accountTypeHandler.selectedAccountType == AccountType.ACCOUNT ? View.VISIBLE : View.GONE}"/>
-	
+			android:text="Отчество" />
 	</LinearLayout>
 
-</layout>
+</LinearLayout>
 
 
 
