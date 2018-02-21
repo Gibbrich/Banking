@@ -1,3 +1,7 @@
 <resources>
 	<string name="app_name">Banking</string>
+	<string name="account_type_title">Тип идентификатора</string>
+	<string name="account_type_prompt">Выберите тип идентификатора</string>
+	<string name="card_number_title">Номер карты</string>
+	<string name="card_number_prompt">Введите номер карты</string>
 </resources>

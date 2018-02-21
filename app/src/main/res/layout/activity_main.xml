@@ -8,12 +8,9 @@
 		<variable
 			name="viewModel"
 			type="com.github.gibbrich.banking.ViewModel"/>
-
-		<variable
-			name="spinnerAdapter"
-			type="android.widget.ArrayAdapter" />
 		
 		<import type="android.view.View"/>
+		<import type="com.github.gibbrich.banking.model.AccountType"/>
 	</data>
 	
 	<LinearLayout
@@ -26,15 +23,18 @@
 			android:id="@+id/idType"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			app:adapter="@{spinnerAdapter}"/>
+			app:adapter="@{viewModel.accountType.widget.adapter}"
+			android:onItemSelected="@{viewModel.accountTypeHandler.onItemSelected}"
+			android:onNothingSelected="@{viewModel.accountTypeHandler.onNothingSelected}"/>
 		
 		<EditText
 			android:id="@+id/cardNumber"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:ems="10"
-			android:inputType="numberDecimal"
-			android:text="Номер карты" />
+			android:inputType=""
+			android:text="Номер карты"
+			android:visibility="@{viewModel.accountTypeHandler.selectedAccountType == AccountType.CARD ? View.VISIBLE : View.GONE}"/>
 		
 		<EditText
 			android:id="@+id/bankId"
@@ -43,7 +43,7 @@
 			android:ems="10"
 			android:inputType="numberDecimal"
 			android:text="БИК"
-			android:visibility="@{viewModel.MFOFieldVisible? View.VISIBLE : View.GONE}"/>
+			android:visibility="@{viewModel.accountTypeHandler.selectedAccountType == AccountType.ACCOUNT ? View.VISIBLE : View.GONE}"/>
 		
 		<EditText
 			android:id="@+id/accountNumber"
@@ -51,12 +51,14 @@
 			android:layout_height="wrap_content"
 			android:ems="10"
 			android:inputType="numberDecimal"
-			android:text="Номер счета" />
+			android:text="Номер счета"
+			android:visibility="@{viewModel.accountTypeHandler.selectedAccountType == AccountType.ACCOUNT ? View.VISIBLE : View.GONE}"/>
 		
 		<Spinner
 			android:id="@+id/paymentType"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content" />
+			android:layout_height="wrap_content"
+			android:visibility="@{viewModel.accountTypeHandler.selectedAccountType == AccountType.ACCOUNT ? View.VISIBLE : View.GONE}"/>
 		
 		<EditText
 			android:id="@+id/lastName"
@@ -64,7 +66,8 @@
 			android:layout_height="wrap_content"
 			android:ems="10"
 			android:inputType="textPersonName"
-			android:text="Фамилия" />
+			android:text="Фамилия"
+			android:visibility="@{viewModel.accountTypeHandler.selectedAccountType == AccountType.ACCOUNT ? View.VISIBLE : View.GONE}"/>
 		
 		<EditText
 			android:id="@+id/firstName"
@@ -72,7 +75,8 @@
 			android:layout_height="wrap_content"
 			android:ems="10"
 			android:inputType="textPersonName"
-			android:text="Имя" />
+			android:text="Имя"
+			android:visibility="@{viewModel.accountTypeHandler.selectedAccountType == AccountType.ACCOUNT ? View.VISIBLE : View.GONE}"/>
 		
 		<EditText
 			android:id="@+id/secondName"
@@ -80,7 +84,8 @@
 			android:layout_height="wrap_content"
 			android:ems="10"
 			android:inputType="textPersonName"
-			android:text="Отчество" />
+			android:text="Отчество"
+			android:visibility="@{viewModel.accountTypeHandler.selectedAccountType == AccountType.ACCOUNT ? View.VISIBLE : View.GONE}"/>
 	
 	</LinearLayout>
 
