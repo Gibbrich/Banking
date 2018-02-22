@@ -22,7 +22,9 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:ems="10"
-			android:inputType="numberDecimal"
+			android:maxLength="21"
+			android:inputType="number"
+			android:digits="0123456789 "
 			android:text="Номер карты" />
 	
 	</LinearLayout>
@@ -34,7 +36,7 @@
 		android:orientation="vertical">
 		
 		<EditText
-			android:id="@+id/bankId"
+			android:id="@+id/mfo"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:ems="10"
@@ -71,7 +73,7 @@
 			android:text="Имя" />
 		
 		<EditText
-			android:id="@+id/secondName"
+			android:id="@+id/middleName"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:ems="10"
