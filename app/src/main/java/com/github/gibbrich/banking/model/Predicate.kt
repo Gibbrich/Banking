@@ -5,17 +5,12 @@ import java.util.regex.Pattern
 /**
  * Created by Dvurechenskiyi on 20.02.2018.
  */
-abstract class Predicate(val type: PredicateType)
+abstract class Predicate
 {
     abstract fun validate(data: String): Boolean
 }
 
-enum class PredicateType
-{
-    REGEX;
-}
-
-class RegexPredicate(private val pattern: String): Predicate(PredicateType.REGEX)
+class RegexPredicate(pattern: String): Predicate()
 {
     private val matcher: Pattern = Pattern.compile(pattern)
 

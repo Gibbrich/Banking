@@ -20,6 +20,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    dataBinding{
+        enabled = true
+    }
 }
 
 dependencies {
@@ -33,4 +37,5 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
+    compile 'com.jakewharton.rxbinding2:rxbinding-design:2.1.1'
 }

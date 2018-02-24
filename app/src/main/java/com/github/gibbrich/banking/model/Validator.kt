@@ -1,8 +1,8 @@
 package com.github.gibbrich.banking.model
 
 /**
- * Created by Dvurechenskiyi on 21.02.2018.
+ * Created by Артур on 24.02.2018.
  */
-abstract class Validator()
+abstract class Validator(open val predicate: Predicate, val message: String)
 
-class PredicateValidator(open val predicate: Predicate)
+class RegexValidator(override val predicate: RegexPredicate, message: String): Validator(predicate, message)
