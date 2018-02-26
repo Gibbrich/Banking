@@ -1,10 +1,8 @@
-package com.github.gibbrich.banking.model
+package com.github.gibbrich.banking.utils
 
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.TextUtils
-import java.nio.file.Files.delete
-
 
 
 /**
@@ -44,5 +42,4 @@ class FourDigitCardFormatWatcher : TextWatcher
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int)
     {
     }
-
 }
