@@ -1,184 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:app="http://schemas.android.com/apk/res-auto"
-		xmlns:tools="http://schemas.android.com/tools">
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	
 	<data>
-		<import type="android.view.View"/>
-		<import type="com.github.gibbrich.banking.model.AccountType"/>
-		<import type="com.github.gibbrich.banking.model.PaymentType"/>
-
+		
+		<import type="android.view.View" />
+		
+		<import type="com.github.gibbrich.banking.model.AccountType" />
+		
+		<import type="com.github.gibbrich.banking.model.PaymentType" />
+		
 		<variable
-			name="accountTypeViewModel"
-			type="com.github.gibbrich.banking.model.SpinnerFieldViewModel"/>
-
-		<variable
-			name="cardViewModel"
-			type="com.github.gibbrich.banking.model.TextFieldViewModel"/>
-
-		<variable
-			name="mfoViewModel"
-			type="com.github.gibbrich.banking.model.TextFieldViewModel"/>
-
-		<variable
-			name="accountViewModel"
-			type="com.github.gibbrich.banking.model.TextFieldViewModel"/>
-
-		<variable
-			name="paymentTypeViewModel"
-			type="com.github.gibbrich.banking.model.SpinnerFieldViewModel"/>
-
-		<variable
-			name="lastNameViewModel"
-			type="com.github.gibbrich.banking.model.TextFieldViewModel"/>
-
-		<variable
-			name="firstNameViewModel"
-			type="com.github.gibbrich.banking.model.TextFieldViewModel"/>
-
-		<variable
-			name="secondNameViewModel"
-			type="com.github.gibbrich.banking.model.TextFieldViewModel"/>
-
-		<variable
-			name="card"
-			type="com.github.gibbrich.banking.model.Card"/>
-
-		<variable
-			name="account"
-			type="com.github.gibbrich.banking.model.Account"/>
+			name="viewModel"
+			type="com.github.gibbrich.banking.viewModel.ViewModel" />
 	</data>
+	
 	<LinearLayout
-				  android:layout_width="match_parent"
-				  android:layout_height="match_parent"
-				  android:orientation="vertical"
-				  tools:context="com.github.gibbrich.banking.MainActivity">
-
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		tools:context="com.github.gibbrich.banking.view.MainActivity">
+		
 		<Spinner
 			android:id="@+id/accountType"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
-
-		<LinearLayout
-			android:orientation="vertical"
-			android:id="@+id/cardLayout"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content">
-
-			<android.support.design.widget.TextInputLayout
-				android:id="@+id/cardNumberLayout"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:hint="@{cardViewModel.viewProperties.title}"
-				android:visibility="@{cardViewModel.isVisible ? View.VISIBLE : View.GONE}">
-
-				<android.support.design.widget.TextInputEditText
-					android:id="@+id/cardNumber"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:digits="0123456789 "
-					android:ems="10"
-					android:inputType="number"
-					android:text="@{card.number}"
-					android:maxLength="21"/>
-			</android.support.design.widget.TextInputLayout>
-
-		</LinearLayout>
-
-		<LinearLayout
-			android:id="@+id/accountLayout"
+			android:layout_height="wrap_content"
+			android:adapter="@{viewModel.accountTypeAdapter}"
+			android:selectedItemPosition="@{viewModel.selectedAccountType.ordinal}" />
+		
+		<android.support.design.widget.TextInputLayout
+			android:id="@+id/cardNumberLayout"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:orientation="vertical">
-
-			<android.support.design.widget.TextInputLayout
-				android:id="@+id/mfoTextInputLayout"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:hint="@{mfoViewModel.viewProperties.title}"
-				android:visibility="@{mfoViewModel.isVisible ? View.VISIBLE : View.GONE}">
-
-				<android.support.design.widget.TextInputEditText
-					android:id="@+id/mfo"
-					android:ems="10"
-					android:inputType="numberDecimal"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:text="@{account.mfo}"
-					/>
-			</android.support.design.widget.TextInputLayout>
-
-			<android.support.design.widget.TextInputLayout
-				android:id="@+id/accountNumberLayout"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:hint="@{accountViewModel.viewProperties.title}"
-				android:visibility="@{accountViewModel.isVisible? View.VISIBLE : View.GONE}">
-
-				<android.support.design.widget.TextInputEditText
-					android:id="@+id/accountNumberEditText"
-					android:layout_width="match_parent"
-					android:ems="10"
-					android:inputType="numberDecimal"
-					android:layout_height="wrap_content"
-					android:text="@{account.number}"/>
-			</android.support.design.widget.TextInputLayout>
-
-			<Spinner
-				android:id="@+id/paymentType"
+			android:hint="@{viewModel.cardFieldProperties.viewProperties.title}"
+			android:visibility="@{viewModel.cardDataFieldVisibility}">
+			
+			<android.support.design.widget.TextInputEditText
+				android:id="@+id/cardNumber"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:visibility="@{paymentTypeViewModel.isVisible? View.VISIBLE : View.GONE}"/>
-
-			<android.support.design.widget.TextInputLayout
-				android:id="@+id/lastNameLayout"
-				android:hint="@{lastNameViewModel.viewProperties.title}"
-				android:visibility="@{lastNameViewModel.isVisible ? View.VISIBLE : View.GONE}"
+				android:digits="0123456789 "
+				android:ems="10"
+				android:inputType="number"
+				android:maxLength="21"
+				android:text="@{viewModel.card.number}"
+				android:addTextChangedListener="@{viewModel.cardInputTextWatcher}" />
+		</android.support.design.widget.TextInputLayout>
+		
+		<android.support.design.widget.TextInputLayout
+			android:id="@+id/mfoTextInputLayout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@{viewModel.mfoFieldProperties.viewProperties.title}"
+			android:visibility="@{viewModel.accountDataFieldVisibility}">
+			
+			<android.support.design.widget.TextInputEditText
+				android:id="@+id/mfoEditText"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent">
-
-				<android.support.design.widget.TextInputEditText
-					android:id="@+id/lastName"
-					android:ems="10"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:inputType="textPersonName"
-					android:text="@{account.lastName}"/>
-			</android.support.design.widget.TextInputLayout>
-
-			<android.support.design.widget.TextInputLayout
-				android:id="@+id/firstNameLayout"
-				android:hint="@{firstNameViewModel.viewProperties.title}"
-				android:visibility="@{firstNameViewModel.isVisible ? View.VISIBLE : View.GONE}"
+				android:layout_height="wrap_content"
+				android:ems="10"
+				android:inputType="numberDecimal"
+				android:maxLength="9"
+				android:text="@{viewModel.account.mfo}" />
+		</android.support.design.widget.TextInputLayout>
+		
+		<android.support.design.widget.TextInputLayout
+			android:id="@+id/accountNumberLayout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@{viewModel.accountFieldProperties.viewProperties.title}"
+			android:visibility="@{viewModel.accountDataFieldVisibility}">
+			
+			<android.support.design.widget.TextInputEditText
+				android:id="@+id/accountNumberEditText"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent">
-
-				<android.support.design.widget.TextInputEditText
-					android:id="@+id/firstName"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:ems="10"
-					android:text="@{account.firstName}"
-					android:inputType="textPersonName"/>
-			</android.support.design.widget.TextInputLayout>
-
-
-			<android.support.design.widget.TextInputLayout
-				android:id="@+id/secondNameLayout"
-				android:hint="@{secondNameViewModel.viewProperties.title}"
-				android:visibility="@{secondNameViewModel.isVisible ? View.VISIBLE : View.GONE}"
+				android:layout_height="wrap_content"
+				android:ems="10"
+				android:inputType="numberDecimal"
+				android:maxLength="20"
+				android:text="@{viewModel.account.number}" />
+		</android.support.design.widget.TextInputLayout>
+		
+		<Spinner
+			android:id="@+id/paymentType"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:adapter="@{viewModel.paymentTypeAdapter}"
+			android:visibility="@{viewModel.accountDataFieldVisibility}" />
+		
+		<android.support.design.widget.TextInputLayout
+			android:id="@+id/lastNameLayout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@{viewModel.lastNameFieldProperties.viewProperties.title}"
+			android:visibility="@{viewModel.accountDataFieldVisibility}">
+			
+			<android.support.design.widget.TextInputEditText
+				android:id="@+id/lastName"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent">
-
-				<android.support.design.widget.TextInputEditText
-					android:id="@+id/secondName"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:ems="10"
-					android:text="@{account.secondName}"
-					android:inputType="textPersonName"/>
-			</android.support.design.widget.TextInputLayout>
-		</LinearLayout>
-
+				android:layout_height="wrap_content"
+				android:ems="10"
+				android:inputType="textPersonName"
+				android:maxLength="40"
+				android:text="@{viewModel.account.lastName}" />
+		</android.support.design.widget.TextInputLayout>
+		
+		<android.support.design.widget.TextInputLayout
+			android:id="@+id/firstNameLayout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@{viewModel.firstNameFieldProperties.viewProperties.title}"
+			android:visibility="@{viewModel.accountDataFieldVisibility}">
+			
+			<android.support.design.widget.TextInputEditText
+				android:id="@+id/firstName"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:ems="10"
+				android:inputType="textPersonName"
+				android:maxLength="40"
+				android:text="@{viewModel.account.firstName}" />
+		</android.support.design.widget.TextInputLayout>
+		
+		<android.support.design.widget.TextInputLayout
+			android:id="@+id/secondNameLayout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@{viewModel.secondNameFieldProperties.viewProperties.title}"
+			android:visibility="@{viewModel.accountDataFieldVisibility}">
+			
+			<android.support.design.widget.TextInputEditText
+				android:id="@+id/secondName"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:ems="10"
+				android:inputType="textPersonName"
+				android:maxLength="40"
+				android:text="@{viewModel.account.secondName}" />
+		</android.support.design.widget.TextInputLayout>
+	
 	</LinearLayout>
 
 </layout>

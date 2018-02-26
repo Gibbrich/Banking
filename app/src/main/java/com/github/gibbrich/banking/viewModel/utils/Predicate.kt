@@ -1,4 +1,4 @@
-package com.github.gibbrich.banking.model
+package com.github.gibbrich.banking.viewModel.utils
 
 import java.util.regex.Pattern
 
