@@ -2,6 +2,24 @@
 	<string name="app_name">Banking</string>
 	<string name="account_type_title">Тип идентификатора</string>
 	<string name="account_type_prompt">Выберите тип идентификатора</string>
+	<string name="account_validator_message">Необходимо выбрать тип идентификатора</string>
 	<string name="card_number_title">Номер карты</string>
 	<string name="card_number_prompt">Введите номер карты</string>
+	<string name="card_number_validator_message">Неверный номер карты</string>
+	<string name="mfo_title">БИК</string>
+	<string name="mfo_prompt">Введите БИК</string>
+	<string name="mfo_validator_message">Неверный БИК</string>
+	<string name="account_number_title">Номер счета</string>
+	<string name="account_number_prompt">Номер счета</string>
+	<string name="account_number_validator_message">Неверное значение</string>
+	<string name="payment_type_title">Тип платежа</string>
+	<string name="payment_type_prompt">Выберите тип платежа</string>
+	<string name="payment_type_validator_message">Необходимо выбрать тип платежа</string>
+	<string name="name_validator_message">Неверное значение</string>
+	<string name="last_name_title">Фамилия владельца счета</string>
+	<string name="last_name_prompt">Фамилия владельца счета</string>
+	<string name="first_name_title">Имя владельца счета</string>
+	<string name="first_name_prompt">Имя владельца счета</string>
+	<string name="second_name_title">Отчество владельца счета</string>
+	<string name="second_name_prompt">Отчество владельца счета</string>
 </resources>

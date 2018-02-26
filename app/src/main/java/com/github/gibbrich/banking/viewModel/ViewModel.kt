@@ -1,13 +1,16 @@
 package com.github.gibbrich.banking.viewModel
 
 import android.databinding.Bindable
+import android.databinding.BindingAdapter
 import android.os.Bundle
+import android.support.annotation.StringRes
 import android.support.design.widget.TextInputLayout
 import android.view.View
 import android.widget.Spinner
 import android.widget.SpinnerAdapter
 import android.widget.TextView
 import com.github.gibbrich.banking.BR
+import com.github.gibbrich.banking.R
 import com.github.gibbrich.banking.adapter.EnumArrayAdapter
 import com.github.gibbrich.banking.model.*
 import com.github.gibbrich.banking.utils.FourDigitCardFormatWatcher
@@ -56,35 +59,35 @@ class ViewModel(private val view: MainActivityView) : BaseViewModel()
         card = Card()
         account = Account()
 
-        val accountTypeViewProperties = ViewProperties("Тип идентификатора", "Выберите тип идентификатора")
-        val accountTypeValidator = RegexValidator(RegexPredicate("^2$|^5$"), "Необходимо выбрать тип идентификатора")
+        val accountTypeViewProperties = ViewProperties(view.getContext().getString(R.string.account_type_title), view.getContext().getString(R.string.account_type_prompt))
+        val accountTypeValidator = RegexValidator(RegexPredicate("^2$|^5$"), view.getContext().getString(R.string.account_validator_message))
         accountTypeFieldProperties = FieldProperties(accountTypeValidator, accountTypeViewProperties)
 
-        val cardNumberViewProperties = ViewProperties("Номер карты", "Введите номер карты")
-        val cardValidator = RegexValidator(RegexPredicate("^\\d{4} \\d{4} \\d{4} \\d{4,7}$"), "Неверный номер карты")
+        val cardNumberViewProperties = ViewProperties(view.getContext().getString(R.string.card_number_title), view.getContext().getString(R.string.card_number_prompt))
+        val cardValidator = RegexValidator(RegexPredicate("^\\d{4} \\d{4} \\d{4} \\d{4,7}$"), view.getContext().getString(R.string.card_number_validator_message))
         cardFieldProperties = FieldProperties(cardValidator, cardNumberViewProperties)
 
-        val mfoViewProperties = ViewProperties("БИК", "Введите БИК")
-        val mfoValidator = RegexValidator(RegexPredicate("^\\d{9}$"), "Неверный БИК")
+        val mfoViewProperties = ViewProperties(view.getContext().getString(R.string.mfo_title), view.getContext().getString(R.string.mfo_prompt))
+        val mfoValidator = RegexValidator(RegexPredicate("^\\d{9}$"), view.getContext().getString(R.string.mfo_validator_message))
         mfoFieldProperties = FieldProperties(mfoValidator, mfoViewProperties)
 
-        val accountNumberViewProperties = ViewProperties("Номер счета", "Номер счета")
-        val accountValidator = RegexValidator(RegexPredicate("^\\d{20}$"), "Неверное значение")
+        val accountNumberViewProperties = ViewProperties(view.getContext().getString(R.string.account_number_title), view.getContext().getString(R.string.account_number_prompt))
+        val accountValidator = RegexValidator(RegexPredicate("^\\d{20}$"), view.getContext().getString(R.string.account_number_validator_message))
         accountFieldProperties = FieldProperties(accountValidator, accountNumberViewProperties)
 
-        val paymentTypeViewProperties = ViewProperties("Тип платежа", "Выберите тип платежа")
-        val paymentTypeValidator = RegexValidator(RegexPredicate("^0$|^1$"), "Необходимо выбрать тип платежа")
+        val paymentTypeViewProperties = ViewProperties(view.getContext().getString(R.string.payment_type_title), view.getContext().getString(R.string.payment_type_prompt))
+        val paymentTypeValidator = RegexValidator(RegexPredicate("^0$|^1$"), view.getContext().getString(R.string.payment_type_validator_message))
         paymentTypeFieldProperties = FieldProperties(paymentTypeValidator, paymentTypeViewProperties)
 
-        val nameValidator = RegexValidator(RegexPredicate("^[а-яА-Я\\-\\s]{2,40}$"), "Неверное значение")
+        val nameValidator = RegexValidator(RegexPredicate("^[а-яА-Я\\-\\s]{2,40}$"), view.getContext().getString(R.string.name_validator_message))
 
-        val lastNameViewProperties = ViewProperties("Фамилия владельца счета", "Фамилия владельца счета")
+        val lastNameViewProperties = ViewProperties(view.getContext().getString(R.string.last_name_title), view.getContext().getString(R.string.last_name_prompt))
         lastNameFieldProperties = FieldProperties(nameValidator, lastNameViewProperties)
 
-        val firstNameViewProperties = ViewProperties("Имя владельца счета", "Имя владельца счета")
+        val firstNameViewProperties = ViewProperties(view.getContext().getString(R.string.first_name_title), view.getContext().getString(R.string.first_name_prompt))
         firstNameFieldProperties = FieldProperties(nameValidator, firstNameViewProperties)
 
-        val secondNameViewProperties = ViewProperties("Отчество владельца счета", "Отчество владельца счета")
+        val secondNameViewProperties = ViewProperties(view.getContext().getString(R.string.second_name_title), view.getContext().getString(R.string.second_name_prompt))
         secondNameFieldProperties = FieldProperties(nameValidator, secondNameViewProperties)
     }
 
